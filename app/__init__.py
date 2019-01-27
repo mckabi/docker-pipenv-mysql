@@ -9,7 +9,7 @@ dotenv.load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 app = Flask(__name__)  # pylint: disable=C0103
 
-app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'sampleapp+docker+pipenv+mysql')
+app.secret_key = os.environ.get('FLASK_SECRET_KEY', os.urandom(16))
 for config_key, config_type, config_default in [
         ('SQLALCHEMY_DATABASE_URI', str, None),
         ('SQLALCHEMY_TRACK_MODIFICATIONS', bool, False),
