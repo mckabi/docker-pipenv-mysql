@@ -13,19 +13,9 @@ dotenv.load_dotenv(os.path.join(BASE_DIR, '.env'))
 app = Flask(__name__)  # pylint: disable=C0103
 
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', os.urandom(16))
-for config_key, config_type, config_default in [
-        ('SQLALCHEMY_DATABASE_URI', str, None),
-        ('SQLALCHEMY_TRACK_MODIFICATIONS', bool, False),
-]:
-    if config_key in os.environ:
-        config_value = os.environ.get(config_key)
-        if config_type == bool and config_value:
-            config_value = str(config_value).lower() in ['yes', 'true', '1']
-        if config_type != str and callable(config_type):
-            config_value = config_type(config_value)
-        app.config[config_key] = config_value
-    else:
-        app.config[config_key] = config_default
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('FLASK_DB', 'mysql://')
 
 db = SQLAlchemy(app)  # pylint: disable=C0103
 
@@ -50,7 +40,7 @@ def hello():
   <body>
     <h1>Hello from docker + pipenv + mysql</h1>
     <ul>
-      <li>Database connection: {test_db_connection()!r}</li>
+      <li>Database connection: {test_db_connection()!s}</li>
       <li>Installed python packages:
         <ul>
           <li>{'</li><li>'.join(get_installed_python_packages())}</li>
