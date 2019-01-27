@@ -7,7 +7,6 @@ ARG PYTHONUNBUFFERED=1
 RUN set -ex \
     && apt-get -qq update \
     && apt-get -q -y upgrade \
-    && apt-get install -y -q locales locales-all \
     && apt-get install -y libmariadb2
 
 RUN pip install --upgrade pip
