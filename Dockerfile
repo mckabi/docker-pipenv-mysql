@@ -49,8 +49,7 @@ RUN set -ex \
         | xargs -r apt-mark manual \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-  && rm -fr /root/.cache/*
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.cache/*
 
 ADD flask_app.py /app/
 
