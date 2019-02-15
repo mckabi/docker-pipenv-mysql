@@ -1,4 +1,4 @@
-FROM python:3.7-slim
+FROM python:3-slim
 LABEL maintainer="McK KIM mckabi/docker-pipenv-mysql"
 
 ARG DEBIAN_FRONTEND=noninteractive
