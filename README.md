@@ -12,7 +12,7 @@ $ docker build --rm -t docker-pipenv-mysql:latest .
 Successfully tagged docker-pipenv-mysql:latest
 $ docker image ls
 REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
-docker-pipenv-mysql   latest              5a7345a07a7c        11 minutes ago      345MB
+docker-pipenv-mysql   latest              376951b8dc8d        11 minutes ago      178MB
 $
 $ docker run --rm -p 8000:8000 -e FLASK_DB='mysql://DB_USER:DB_PASSWORD@DB_HOST:3306/DB_NAME?charset=utf8' --name docker-pipenv-mysql docker-pipenv-mysql
  * Serving Flask app "flask_app" (lazy loading)
